@@ -23,6 +23,17 @@ public class testCerradura {
 	}
 	
 	@Test
+	public void testLlaveClaveIncorrectaBloqueada() {
+		Cerradura miCerradura = new Cerradura(1234,3);
+		miCerradura.abrir(234);
+		miCerradura.abrir(234);
+		miCerradura.abrir(234);
+		miCerradura.abrir(1234);
+		
+		assertTrue(miCerradura.fueBloqueada());
+	}
+	
+	@Test
 	public void testCerrar() {
 		Cerradura miCerradura = new Cerradura(1234,3);
 		miCerradura.abrir(1234);
@@ -46,17 +57,7 @@ public class testCerradura {
 
 		assertTrue(miCerradura.estaCerrada());
 	}
-	
-	@Test
-	public void testFueBloqueada() {
-		Cerradura miCerradura = new Cerradura(1234,3);
-		miCerradura.abrir(789);
-		miCerradura.abrir(456);
-		miCerradura.abrir(456);
-		
-		assertTrue(miCerradura.fueBloqueada());
-	}
-	
+
 	@Test
 	public void testAperturasExitosas() {
 		Cerradura miCerradura = new Cerradura(1234,3);
@@ -81,6 +82,13 @@ public class testCerradura {
 		
 		System.out.print("\nAperturas Fallidas: " + miCerradura.aperturasFallidas());
 		assertEquals(estimado, miCerradura.aperturasFallidas());
+	}
+	
+	@Test
+	public void testCambiarClave() {
+		Cerradura miCerradura = new Cerradura(1234,3);
+		
+		assertTrue(miCerradura.cambiarClave(1234, 4567, 4567));
 	}
 
 } // fin class
